@@ -123,11 +123,11 @@ console.log(openModal);
   },[openModal])
   return (
     <div>
-      {openModal!=''&&openModal==='newopeniing'?
+      {openModal!==''&&openModal==='newopeniing'?
       <Alert open={true} removeModal={closeModal} title={"New job openings go here"} type={"Add some fileds to manage new job opening"}/>:
-      openModal!=''&&openModal==='newmember'?
+      openModal!==''&&openModal==='newmember'?
       <Alert open={true} removeModal={closeModal} title={"New member creation go here"} type={"Add some fields to manage new users"}/>:
-      openModal!=''&&openModal==='viewmember'?<Alert open={true} removeModal={closeModal} title={"Availablle members"} type={"You I'll get available member details here."}/>:
+      openModal!==''&&openModal==='viewmember'?<Alert open={true} removeModal={closeModal} title={"Availablle members"} type={"You I'll get available member details here."}/>:
       ''}
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
