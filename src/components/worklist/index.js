@@ -1,5 +1,5 @@
 import { Backdrop, Box, Button, ButtonGroup, CircularProgress, Grid, Menu, MenuItem, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
@@ -43,7 +43,8 @@ function Worklist() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [loaderStatus, setLoader] = useState(false)
-  const [openModal, setOpenModal] = useState('')
+  const [openModal, setOpenModal] = useState(false)
+  const [modalDatas, setModalDatas] = useState({ title: '', message: '', })
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -92,7 +93,7 @@ function Worklist() {
       alert("AllData is selected")
     } else if (buttonKey === 'two') {
       alert("New openings selected")
-    }else if (buttonKey === 'four') {
+    } else if (buttonKey === 'four') {
       setLoader(true)
       setTimeout(() => {
         setLoader(false)
@@ -100,8 +101,24 @@ function Worklist() {
     }
 
   }
+  const handleRightButtonEvents = (e) => {
+    let buttonKey = e.target.name
+    if (buttonKey === 'newopening') {
+      modalDatas.title = "New job openings go here"
+      modalDatas.message = "Add some fileds to manage new job opening"
+      setOpenModal(true)
+    } else if (buttonKey === 'newmember') {
+      modalDatas.title = "New member creation go here"
+      modalDatas.message = "Add some fields to manage new users"
+      setOpenModal(true)
+    } else if (buttonKey === 'viewmember') {
+      modalDatas.title = "Available members"
+      modalDatas.message = "You I'll get available member details here."
+      setOpenModal(true)
+    }
+  }
   const closeModal = () => {
-    setOpenModal('')
+    setOpenModal(false)
   }
   const handleIconClick = (value) => {
     setLoader(true)
@@ -111,12 +128,8 @@ function Worklist() {
   }
   return (
     <div>
-      {openModal !== '' && openModal === 'newopeniing' ?
-        <Alert open={true} removeModal={closeModal} title={"New job openings go here"} type={"Add some fileds to manage new job opening"} /> :
-        openModal !== '' && openModal === 'newmember' ?
-          <Alert open={true} removeModal={closeModal} title={"New member creation go here"} type={"Add some fields to manage new users"} /> :
-          openModal !== '' && openModal === 'viewmember' ? <Alert open={true} removeModal={closeModal} title={"Availablle members"} type={"You I'll get available member details here."} /> :
-            ''}
+     
+        <Alert open={openModal} removeModal={closeModal} title={modalDatas.title} type={modalDatas.message} />
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loaderStatus}
@@ -160,8 +173,8 @@ function Worklist() {
               },
             }}
           >
-            <ButtonGroup color="secondary" aria-label="medium secondary button group" onClick={(e) => setOpenModal(e.target.name)}>
-              <Button name="newopeniing">Create New Opening</Button>
+            <ButtonGroup color="secondary" aria-label="medium secondary button group" onClick={(e) => handleRightButtonEvents(e)}>
+              <Button name="newopening">Create New Opening</Button>
               <Button name="newmember">Add New Member</Button>
               <Button name="viewmember">View Members</Button>
             </ButtonGroup>
