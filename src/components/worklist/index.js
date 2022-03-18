@@ -4,39 +4,10 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Alert from "../common/Alert";
-const itemsFromBackend = [
-  { id: "1", jobName: 'Full-Stack Developer', description: "Hiring Full Stack Developer With 3+ years Experience", Salary: '4-7LPA' },
-  { id: "2", jobName: 'DotNet Developer', description: "Opening for DotNet Developer With 0 to 2 years Experience", Salary: '2-4LPA' },
-  { id: "3", jobName: 'Angular Developer', description: "Angular Developer With 8+ years Experience", Salary: '3-5LPA' },
-  { id: "4", jobName: 'HR Specialist', description: "Hiring HR Specialist With 3+ years Experience", Salary: '2-7LPA' },
-  { id: "5", jobName: 'PHP Developer', description: "Hiring PHP Developer With 5+ years Experience", Salary: '5-7LPA' },
-  { id: "6", jobName: 'Automation Tester', description: "Hiring Automation Tester With  Min 1+ years Experience", Salary: '2-3LPA' },
-];
+const itemsFromBackend = [{ id: "1", jobName: 'Full-Stack Developer', description: "Hiring Full Stack Developer With 3+ years Experience", Salary: '4-7LPA' },{ id: "2", jobName: 'DotNet Developer', description: "Opening for DotNet Developer With 0 to 2 years Experience", Salary: '2-4LPA' },{ id: "3", jobName: 'Angular Developer', description: "Angular Developer With 8+ years Experience", Salary: '3-5LPA' },{ id: "4", jobName: 'HR Specialist', description: "Hiring HR Specialist With 3+ years Experience", Salary: '2-7LPA' },{ id: "5", jobName: 'PHP Developer', description: "Hiring PHP Developer With 5+ years Experience", Salary: '5-7LPA' },{ id: "6", jobName: 'Automation Tester', description: "Hiring Automation Tester With  Min 1+ years Experience", Salary: '2-3LPA' },];
 
 const columnsFromBackend = [
-  {
-    id: "1",
-    name: "Opening Positions",
-    items: itemsFromBackend
-  },
-  {
-    id: "2",
-    name: "In Progress",
-    items: []
-  },
-  {
-    id: "3",
-    name: "Shortlisted for Final HR",
-    items: []
-  },
-  {
-    id: "4",
-    name: "Offer Released",
-    items: []
-  }
-];
-
-
+  {id: "1",name: "Opening Positions",items: itemsFromBackend},{ id: "2",name: "In Progress",items: []},{id: "3",name: "Shortlisted for Final HR",items: []},{id: "4",name: "Offer Released",items: []}];
 
 function Worklist() {
   const [columns, setColumns] = useState(columnsFromBackend);
@@ -45,55 +16,28 @@ function Worklist() {
   const [loaderStatus, setLoader] = useState(false)
   const [openModal, setOpenModal] = useState(false)
   const [modalDatas, setModalDatas] = useState({ title: '', message: '', })
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleClick = (event) => {setAnchorEl(event.currentTarget);};
+  const handleClose = () => {setAnchorEl(null);};
   const onDragEnd = (result) => {
     if (!result.destination) return;
     const { source, destination } = result;
-
     if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId];
-      const destColumn = columns[destination.droppableId];
-      const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);
+      const sourceColumn = columns[source.droppableId],destColumn = columns[destination.droppableId],sourceItems = [...sourceColumn.items],destItems = [...destColumn.items],[removed] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...sourceColumn,
-          items: sourceItems
-        },
-        [destination.droppableId]: {
-          ...destColumn,
-          items: destItems
-        }
-      });
+      setColumns({...columns,[source.droppableId]: {...sourceColumn,items: sourceItems},[destination.droppableId]: {...destColumn,items: destItems}});
     } else {
-      const column = columns[source.droppableId];
-      const copiedItems = [...column.items];
-      const [removed] = copiedItems.splice(source.index, 1);
+      const column = columns[source.droppableId],copiedItems = [...column.items],[removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...column,
-          items: copiedItems
-        }
-      });
+      setColumns({...columns,[source.droppableId]: {...column,items: copiedItems}});
     }
   };
+
   const handleLeftButtonEvents = (e) => {
-    let buttonKey = e.target.name
-    if (buttonKey === 'one') {
+    if (e.target.name === 'one') {
       alert("AllData is selected")
-    } else if (buttonKey === 'two') {
+    } else if (e.target.name === 'two') {
       alert("New openings selected")
-    } else if (buttonKey === 'four') {
+    } else if (e.target.name === 'four') {
       setLoader(true)
       setTimeout(() => {
         setLoader(false)
@@ -102,24 +46,15 @@ function Worklist() {
 
   }
   const handleRightButtonEvents = (e) => {
-    let buttonKey = e.target.name
-    if (buttonKey === 'newopening') {
-      modalDatas.title = "New job openings go here"
-      modalDatas.message = "Add some fileds to manage new job opening"
-      setOpenModal(true)
-    } else if (buttonKey === 'newmember') {
-      modalDatas.title = "New member creation go here"
-      modalDatas.message = "Add some fields to manage new users"
-      setOpenModal(true)
-    } else if (buttonKey === 'viewmember') {
-      modalDatas.title = "Available members"
-      modalDatas.message = "You I'll get available member details here."
-      setOpenModal(true)
+    if (e.target.name === 'newopening') {
+      modalDatas.title = "New job openings go here";modalDatas.message = "Add some fileds to manage new job opening";setOpenModal(true);
+    } else if (e.target.name === 'newmember') {
+      modalDatas.title = "New member creation go here";modalDatas.message = "Add some fields to manage new users";setOpenModal(true);
+    } else if (e.target.name === 'viewmember') {
+      modalDatas.title = "Available members";modalDatas.message = "You I'll get available member details here.";setOpenModal(true);
     }
   }
-  const closeModal = () => {
-    setOpenModal(false)
-  }
+  const closeModal = () => {setOpenModal(false)}
   const handleIconClick = (value) => {
     setLoader(true)
     setTimeout(() => {
@@ -128,7 +63,6 @@ function Worklist() {
   }
   return (
     <div>
-     
         <Alert open={openModal} removeModal={closeModal} title={modalDatas.title} type={modalDatas.message} />
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
