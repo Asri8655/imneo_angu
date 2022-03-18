@@ -12,8 +12,6 @@ const style = {
     p: 4,
   };
 const Alert=(props)=> {
-    console.log(props);
-    // const [open, setOpen] = React.useState(props.open);
   return (
     <Modal
     aria-labelledby="transition-modal-title"

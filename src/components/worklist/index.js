@@ -43,7 +43,7 @@ function Worklist() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [loaderStatus, setLoader] = useState(false)
-  const [openModal,setOpenModal]=useState('')
+  const [openModal, setOpenModal] = useState('')
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -73,7 +73,6 @@ function Worklist() {
         }
       });
     } else {
-      console.log("False")
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
@@ -90,12 +89,10 @@ function Worklist() {
   const handleLeftButtonEvents = (e) => {
     let buttonKey = e.target.name
     if (buttonKey === 'one') {
-
+      alert("AllData is selected")
     } else if (buttonKey === 'two') {
-
-    } else if (buttonKey === 'three') {
-
-    } else if (buttonKey === 'four') {
+      alert("New openings selected")
+    }else if (buttonKey === 'four') {
       setLoader(true)
       setTimeout(() => {
         setLoader(false)
@@ -103,14 +100,8 @@ function Worklist() {
     }
 
   }
-  // const handleRightButtonEvents = (e) => {
-  //   let buttonKey = e.target.name
-  // setOpenModal(buttonKey)
-
-  // }
-
   const closeModal = () => {
-setOpenModal('')
+    setOpenModal('')
   }
   const handleIconClick = (value) => {
     setLoader(true)
@@ -118,17 +109,14 @@ setOpenModal('')
       setLoader(false)
     }, 3000);
   }
-  useEffect(()=>{
-console.log(openModal);
-  },[openModal])
   return (
     <div>
-      {openModal!==''&&openModal==='newopeniing'?
-      <Alert open={true} removeModal={closeModal} title={"New job openings go here"} type={"Add some fileds to manage new job opening"}/>:
-      openModal!==''&&openModal==='newmember'?
-      <Alert open={true} removeModal={closeModal} title={"New member creation go here"} type={"Add some fields to manage new users"}/>:
-      openModal!==''&&openModal==='viewmember'?<Alert open={true} removeModal={closeModal} title={"Availablle members"} type={"You I'll get available member details here."}/>:
-      ''}
+      {openModal !== '' && openModal === 'newopeniing' ?
+        <Alert open={true} removeModal={closeModal} title={"New job openings go here"} type={"Add some fileds to manage new job opening"} /> :
+        openModal !== '' && openModal === 'newmember' ?
+          <Alert open={true} removeModal={closeModal} title={"New member creation go here"} type={"Add some fields to manage new users"} /> :
+          openModal !== '' && openModal === 'viewmember' ? <Alert open={true} removeModal={closeModal} title={"Availablle members"} type={"You I'll get available member details here."} /> :
+            ''}
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loaderStatus}
