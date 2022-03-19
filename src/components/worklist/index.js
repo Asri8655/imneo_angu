@@ -9,6 +9,7 @@ import { isMobile } from 'react-device-detect';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CommonAlert from "../common/Alert";
+import Typist from 'react-typist';
 const itemsFromBackend = [{ id: "1", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'Full-Stack Developer', description: "Hiring Full Stack Developer With 3+ years Experience", Salary: '4-7LPA' }, { id: "2", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'DotNet Developer', description: "Opening for DotNet Developer With 0 to 2 years Experience", Salary: '2-4LPA' }, { id: "3", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'Angular Developer', description: "Angular Developer With 8+ years Experience", Salary: '3-5LPA' }, { id: "4", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'HR Specialist', description: "Hiring HR Specialist With 3+ years Experience", Salary: '2-7LPA' }, { id: "5", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'PHP Developer', description: "Hiring PHP Developer With 5+ years Experience", Salary: '5-7LPA' }, { id: "6", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'Automation Tester', description: "Hiring Automation Tester With  Min 1+ years Experience", Salary: '2-3LPA' },];
 
 const columnsFromBackend = [
@@ -155,10 +156,12 @@ function Worklist() {
     direction="column"
     alignItems="center"
     justifyContent="center"
-    sx={{ minHeight: '100vh',    backgroundColor: "skyblue"}}
+    sx={{ minHeight: '100vh',      background:" linear-gradient(to bottom, #800080, #ffc0cb)"}}
   >
-  
-    <Grid item xs={3}><Button variant='contained' sx={{color:'black',backgroundColor:'white',}} onClick={loginWithRedirect} style={{top:'50%',}}>Log in</Button></Grid></Grid>;
+  <Grid item xs={12}><Typist cursor={{show:false}}>
+       <Typography variant='h3' sx={{color:'white'}}>Welcome to Hiring.com</Typography> 
+      </Typist></Grid>
+    <Grid item xs={3} sx={{mt:3}}><Button variant='contained' sx={{color:'black',backgroundColor:'white',}} onClick={loginWithRedirect} style={{top:'50%',}}>Log in</Button></Grid></Grid>;
   };
 }
 export default Worklist;

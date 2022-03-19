@@ -20,8 +20,7 @@ export default function CreateTransaction(props) {
   };
   return (
     <Grid container component="main" sx={!isMobile ? {  pt: 10, pb: 10, width: '100%', } : { height: "100vh" }}>
-        
-      <Grid item xs={12} sm={12} md={12} lg={12} display='flex' justifyContent='center' elevation={6} square>
+           <Grid item xs={12} sm={12} md={12} lg={12} display='flex' justifyContent='center' elevation={6} square>
         <Box
           sx={{
             my: 6,
@@ -46,12 +45,9 @@ export default function CreateTransaction(props) {
                 type="text"
               />
             </Grid>
-        
-      
             <Grid item xs={12} sm={12} md={12} lg={6} sx={{ p: 1 }}>
               <TextField
                 margin="normal"
-
                 fullWidth
                 id="description"
                 label="Description"
@@ -74,11 +70,7 @@ export default function CreateTransaction(props) {
                 type="text"
               />
             </Grid>
-        
-      
             <Grid item xs={12} sm={12} md={12} lg={6} sx={{ p: 1 }}></Grid>
-
-
             <Grid item xs={12} sm={12} md={12} lg={6} sx={{ p: 1 }}>
               <Button
                 type="reset"
@@ -100,7 +92,6 @@ export default function CreateTransaction(props) {
                 Create
               </Button>
             </Grid>
-
           </Grid>
         </Box>
       </Grid>
