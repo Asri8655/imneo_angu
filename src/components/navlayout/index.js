@@ -38,7 +38,7 @@ export default function PrimarySearchAppBar() {
     const isMenuOpen = Boolean(anchorEl);
     const { user, logout, } = useAuth0();
     const handleProfileMenuOpen = (event) => {setAnchorEl(event.currentTarget);};
-    const handleMenuClose = () => {setAnchorEl(null);;};
+    const handleMenuClose = () => {setAnchorEl(null);};
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu anchorEl={anchorEl} anchorOrigin={{vertical: 'top', horizontal: 'right', }} id={menuId}keepMounted

@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { isMobile } from 'react-device-detect';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Commonalert from "../common/Alert";
+import Creationalert from "../common/Alert";
 import Typist from 'react-typist';
 const itemsFromBackend = [{ id: "1", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'Full-Stack Developer', description: "Hiring Full Stack Developer With 3+ years Experience", Salary: '4-7LPA' }, { id: "2", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'DotNet Developer', description: "Opening for DotNet Developer With 0 to 2 years Experience", Salary: '2-4LPA' }, { id: "3", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'Angular Developer', description: "Angular Developer With 8+ years Experience", Salary: '3-5LPA' }, { id: "4", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'HR Specialist', description: "Hiring HR Specialist With 3+ years Experience", Salary: '2-7LPA' }, { id: "5", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'PHP Developer', description: "Hiring PHP Developer With 5+ years Experience", Salary: '5-7LPA' }, { id: "6", ei: <EditIcon />, di: <DeleteIcon />, jobName: 'Automation Tester', description: "Hiring Automation Tester With  Min 1+ years Experience", Salary: '2-3LPA' },];
 
@@ -98,7 +98,7 @@ function Worklist() {
             New Job Created
           </Alert>
         </Snackbar>
-        <Commonalert open={openModal} removeModal={closeModal} title={modalDatas.title} type={modalDatas.type} createFunc={createFunc} joblen={itemsFromBackend.length} />
+        <Creationalert open={openModal} removeModal={closeModal} title={modalDatas.title} type={modalDatas.type} createFunc={createFunc} joblen={itemsFromBackend.length} />
         <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loaderStatus} onClick={() => setLoader(false)}><CircularProgress color="inherit" /></Backdrop>
         <Grid container >
           <Grid item xs={12} sm={12} md={4} lg={4} sx={{ p: 2, display: 'flex', justifyContent: "start", }}>
