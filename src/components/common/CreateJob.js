@@ -4,7 +4,7 @@ import React from 'react'
 import { isMobile } from 'react-device-detect';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-export default function CreateTransaction(props) {
+export default function Createjob(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
